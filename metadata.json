@@ -1,0 +1,8 @@
+{
+  "name": "AmazingAI LMS Landing Page",
+  "description": "A high-converting, visually stunning landing page for an AI learning platform featuring personalized paths, ISO 9001 certification, and a comprehensive AI tools curriculum.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
