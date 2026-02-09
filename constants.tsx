@@ -15,14 +15,6 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     date: "May 10, 2024",
     imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
     readTime: "5 min read"
-  },
-  {
-    id: 'n2',
-    title: "Mastering Prompt Engineering: A Guide for Beginners",
-    category: "Tutorials",
-    date: "May 8, 2024",
-    imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4628c9457?auto=format&fit=crop&q=80&w=800",
-    readTime: "8 min read"
   }
 ];
 
@@ -60,17 +52,17 @@ export const INITIAL_CONTENT: PageContent = {
     subtitle: "20+ AI Tools",
     items: [
       { id: 't1', name: "ChatGPT", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", isBlurred: false },
-      { id: 't2', name: "Claude", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Claude_Logo.svg", isBlurred: false },
-      { id: 't3', name: "Grok", logo: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=100", isBlurred: false },
+      { id: 't2', name: "Claude", logo: "https://www.anthropic.com/images/icons/apple-touch-icon.png", isBlurred: false },
+      { id: 't3', name: "Grok", logo: "https://x.ai/favicon.ico", isBlurred: false },
       { id: 't4', name: "Co-Pilot", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Microsoft_Copilot_Icon.svg", isBlurred: false },
       { id: 't5', name: "Google AI Studio", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002.svg", isBlurred: false },
-      { id: 't6', name: "Suno AI", logo: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=100", isBlurred: false },
+      { id: 't6', name: "Suno AI", logo: "https://suno.com/favicon.ico", isBlurred: false },
       { id: 't7', name: "Midjourney", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.svg", isBlurred: true },
       { id: 't8', name: "Runway", logo: "https://runwayml.com/favicon.ico", isBlurred: true },
       { id: 't9', name: "D-ID", logo: "https://www.d-id.com/wp-content/uploads/2021/04/cropped-favicon-192x192.png", isBlurred: true },
-      { id: 't10', name: "descript", logo: "https://upload.wikimedia.org/wikipedia/commons/7/78/Descript_logo.svg", isBlurred: true },
-      { id: 't11', name: "tome", logo: "https://tome.app/favicon.ico", isBlurred: true },
-      { id: 't12', name: "vidyo.ai", logo: "https://vidyo.ai/wp-content/uploads/2022/08/cropped-favicon-32x32.png", isBlurred: true }
+      { id: 't10', name: "ElevenLabs", logo: "https://elevenlabs.io/favicon.ico", isBlurred: true },
+      { id: 't11', name: "Perplexity", logo: "https://www.perplexity.ai/favicon.ico", isBlurred: true },
+      { id: 't12', name: "Jasper", logo: "https://www.jasper.ai/favicon.ico", isBlurred: true }
     ]
   },
   faqs: FAQS,

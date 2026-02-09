@@ -9,30 +9,24 @@ interface PromoVideoProps {
 
 const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEditMode }) => {
   const getEmbedUrl = (url: string) => {
-    if (!url) return '';
-    try {
-      let videoId = '';
-      if (url.includes('youtu.be/')) {
-        videoId = url.split('youtu.be/')[1].split(/[?#]/)[0];
-      } else if (url.includes('youtube.com/watch')) {
-        const urlObj = new URL(url);
-        videoId = urlObj.searchParams.get('v') || '';
-      } else if (url.includes('youtube.com/embed/')) {
-        videoId = url.split('embed/')[1]?.split(/[?#]/)[0];
-      }
-      // Simpler embed string to avoid configuration errors (153)
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : '';
-    } catch (e) {
-      console.error("Failed to parse YouTube URL", e);
-      return '';
-    }
+    if (!url || typeof url !== 'string') return '';
+    
+    // Regex that handles standard watch?v=, short youtu.be, and embed URLs
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    
+    const videoId = (match && match[2].length === 11) ? match[2] : null;
+    
+    return videoId ? `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1` : '';
   };
 
   const handleVideoEdit = (e: React.MouseEvent) => {
     if (!isEditMode) return;
     e.stopPropagation();
-    const newUrl = prompt('Enter YouTube Video URL (e.g., https://youtu.be/Iz4huvnC-0M):', videoUrl);
-    if (newUrl !== null && newUrl.trim() !== "") onUpdateVideo(newUrl);
+    const newUrl = prompt('Enter YouTube Video URL:', videoUrl);
+    if (newUrl !== null && newUrl.trim() !== "") {
+      onUpdateVideo(newUrl.trim());
+    }
   };
 
   const embedUrl = getEmbedUrl(videoUrl);
@@ -40,11 +34,11 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEdit
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div 
-        className={`relative group bg-slate-100 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl aspect-video w-full transition-all ${isEditMode ? 'ring-4 ring-blue-500/50' : ''}`}
+        className={`relative group bg-slate-900 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl aspect-video w-full transition-all ${isEditMode ? 'ring-4 ring-blue-500/50' : ''}`}
       >
         {embedUrl ? (
           <iframe 
-            className="absolute inset-0 w-full h-full pointer-events-auto"
+            className="absolute inset-0 w-full h-full"
             src={embedUrl}
             title="Promotional Video"
             frameBorder="0"
@@ -52,8 +46,9 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEdit
             allowFullScreen
           ></iframe>
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-bold p-10 text-center">
-            Invalid or missing YouTube URL. Please update in Edit Mode.
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-10 text-center">
+            <p className="font-bold text-xl">Video configuration pending...</p>
+            <p className="text-sm mt-2 opacity-60">Click edit to provide a valid YouTube link.</p>
           </div>
         )}
         
@@ -63,7 +58,7 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEdit
             className="absolute inset-0 bg-blue-600/30 backdrop-blur-[2px] z-50 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
           >
             <div className="bg-white text-blue-600 px-8 py-4 rounded-full font-black shadow-2xl scale-95 group-hover:scale-100 transition-transform">
-              Edit Video URL
+              Change Video
             </div>
           </div>
         )}

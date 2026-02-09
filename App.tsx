@@ -1,13 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { SectionId, PageContent, Benefit, Tool } from './types';
-import { INITIAL_CONTENT, NEWS_ARTICLES } from './constants';
+import { INITIAL_CONTENT } from './constants';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import SectionHeading from './components/SectionHeading';
 import BenefitCard from './components/BenefitCard';
-import ToolIcon from './components/ToolIcon';
-import NewsCard from './components/NewsCard';
 import FAQSection from './components/FAQSection';
 import StickyElements from './components/StickyElements';
 import Footer from './components/Footer';
@@ -132,7 +129,7 @@ const App: React.FC = () => {
           <Hero content={content.hero} onUpdate={updateHero} isEditMode={isEditMode} />
         </section>
 
-        {/* PROMO VIDEO (Horizontal Full Width) */}
+        {/* PROMO VIDEO */}
         <section id={SectionId.PROMO} className="relative z-10 -mt-20">
           <PromoVideo 
             videoUrl={content.hero.promoVideoUrl} 
@@ -141,7 +138,7 @@ const App: React.FC = () => {
           />
         </section>
 
-        {/* 3 IMAGE GRID (Showcase) */}
+        {/* 3 IMAGE GRID */}
         <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {content.imageGrid.map((src, index) => (
@@ -158,7 +155,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* MASTER - Improved Section Matching Reference Image */}
+        {/* MASTER - AI TOOLS SECTION */}
         <section id={SectionId.MASTER} className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
@@ -205,7 +202,7 @@ const App: React.FC = () => {
                     className={`w-10 h-10 flex-shrink-0 flex items-center justify-center ${isEditMode ? 'cursor-pointer ring-2 ring-blue-500 rounded-lg p-1' : ''}`}
                   >
                     <img 
-                      src={tool.logo} 
+                      src={tool.logo || 'https://via.placeholder.com/40'} 
                       alt={tool.name} 
                       className="w-full h-full object-contain" 
                     />
