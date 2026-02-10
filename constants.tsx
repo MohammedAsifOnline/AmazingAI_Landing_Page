@@ -2,9 +2,66 @@
 import { PageContent, FAQItem, NewsArticle } from './types';
 
 export const FAQS: FAQItem[] = [
-  { id: 'f1', question: "Do I need any technical background?", answer: "No, our curriculum is designed for everyone. We start with the absolute fundamentals and gradually move to advanced concepts." },
-  { id: 'f2', question: "Is the certification recognized?", answer: "Yes, AmazingAI is ISO 9001:2015 certified, and our credentials are widely recognized by top tech companies." },
-  { id: 'f3', question: "Can I access the tools immediately?", answer: "Absolutely! Once registered, you get instant access to our curated tool database and learning paths." }
+  { 
+    id: 'f1', 
+    question: "When does the 21-Day AI Mastery course start?", 
+    answer: "This is a regularly running program with frequent new batches. Once you register, all access details, timelines, and start information will be shared via email." 
+  },
+  { 
+    id: 'f2', 
+    question: "How is the course delivered?", 
+    answer: "The course is delivered through structured pre-recorded video modules, allowing you to learn at your own pace. Support and guidance are available throughout your learning journey." 
+  },
+  { 
+    id: 'f3', 
+    question: "How can I ask questions or clear doubts?", 
+    answer: "You’ll get access to a multi-language AI assistant that supports real-time interaction, Q&A, and explanations in your preferred language—anytime you need help." 
+  },
+  { 
+    id: 'f4', 
+    question: "Is the course completely online?", 
+    answer: "Yes. This is a 100% online program and can be accessed from anywhere in the world." 
+  },
+  { 
+    id: 'f5', 
+    question: "Do I need prior experience with AI or coding?", 
+    answer: "No prior experience is required. The course starts from the basics and gradually moves to advanced AI applications using simple, practical explanations." 
+  },
+  { 
+    id: 'f6', 
+    question: "Is this course suitable for beginners?", 
+    answer: "Absolutely. The program is designed for beginners, professionals, and entrepreneurs, with a clear learning path from fundamentals to real-world use cases." 
+  },
+  { 
+    id: 'f7', 
+    question: "Will I get access to the AI tools taught in the course?", 
+    answer: "Yes. We demonstrate both free and paid AI tools and guide you on how to access free versions or trials for hands-on practice." 
+  },
+  { 
+    id: 'f8', 
+    question: "What time zone does the course follow?", 
+    answer: "The default time zone is IST (Indian Standard Time). Since the content is self-paced, you can learn comfortably from any time zone." 
+  },
+  { 
+    id: 'f9', 
+    question: "What if I enroll but want to shift to another batch?", 
+    answer: "We currently do not offer refunds. However, you can move your enrollment to the next available batch by contacting our support team." 
+  },
+  { 
+    id: 'f10', 
+    question: "Will I receive a certificate after completion?", 
+    answer: "Yes. Upon successful completion, you’ll receive an AmazingAI Certificate of Completion. AmazingAI is ISO 9001:2015 certified, and our credentials are widely recognized by top tech companies, adding real value to your professional profile." 
+  },
+  { 
+    id: 'f11', 
+    question: "Who should join this program?", 
+    answer: "Students, working professionals, entrepreneurs, freelancers, and anyone who wants to use AI for productivity, career growth, and real-world impact." 
+  },
+  { 
+    id: 'f12', 
+    question: "Does this course guarantee a job or placement?", 
+    answer: "We don’t promise jobs or placements. However, learners who are consistent and serious gain strong, practical AI skills that can significantly boost career opportunities." 
+  }
 ];
 
 export const NEWS_ARTICLES: NewsArticle[] = [
@@ -34,17 +91,34 @@ export const INITIAL_CONTENT: PageContent = {
   },
   imageGrid: [
     "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1620712943543-bcc4628c9457?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1675271591211-126ad94e495d?auto=format&fit=crop&q=80&w=800"
+    "https://images.unsplash.com/photo-1675271591211-126ad94e495d?auto=format&fit=crop&q=80&w=800",
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
   ],
   gain: {
     title: "What You'll Gain",
     subtitle: "Master the future of work with our comprehensive curriculum.",
     items: [
-      { id: '1', title: "AI Fundamentals", description: "Build a strong base in generative AI concepts, LLMs, and neural network basics.", icon: "🧠" },
-      { id: '2', title: "Learn 25+ AI Tools", description: "Hands-on mastery of industry-leading tools like ChatGPT, Claude, Midjourney, and more.", icon: "🛠️" },
-      { id: '3', title: "Interactive Method", description: "Learning by doing with real-world projects tailored to your profession.", icon: "🎮" },
-      { id: '4', title: "Prompting Techniques", description: "Master the art of prompt engineering to get perfect results every time.", icon: "⌨️" }
+      { id: 'g0', title: "Fundamentals of AI", description: "Build a solid foundation in how artificial intelligence and machine learning work.", icon: "🧠" },
+      { id: 'g1', title: "Promting Techniques", description: "Master the art of prompt engineering to get exactly what you need from any LLM.", icon: "⌨️" },
+      { id: '1', title: "Understand Gen AI", description: "Master the core concepts of generative models and their underlying technologies.", icon: "🔬" },
+      { id: '2', title: "Content Creation", description: "Generate blog posts, social media, and professional copy in seconds.", icon: "✍️" },
+      { id: '3', title: "Create AI Agents", description: "Build and deploy autonomous AI agents to automate your business processes.", icon: "🤖" },
+      { id: '4', title: "Image & Video Generation", description: "Create stunning visuals and high-quality videos using Midjourney and Runway.", icon: "🎬" },
+      { id: '5', title: "Music & Audio Generation", description: "Generate original soundtracks and professional voiceovers instantly.", icon: "🎵" },
+      { id: '6', title: "Stunning Websites & Apps", description: "Design and code fully functional web projects using AI-assisted tools.", icon: "💻" },
+      { id: '8', title: "And Lot more...", description: "Continuous updates with the latest tools added to your portal every month.", icon: "✨" }
+    ]
+  },
+  audience: {
+    title: "Who is this Workshop For?",
+    subtitle: "Whether you're starting out or scaling up, AI is the lever you need.",
+    items: [
+      { id: 'a1', title: "Students", description: "Accelerate your career start with AI skills.", icon: "🎓" },
+      { id: 'a2', title: "Working Professionals", description: "Automate tasks and boost productivity.", icon: "💼" },
+      { id: 'a3', title: "Business Owners", description: "Scale operations and reduce costs.", icon: "🏢" },
+      { id: 'a4', title: "Content Creators", description: "Generate endless content ideas instantly.", icon: "🎥" },
+      { id: 'a5', title: "Ads & Marketing", description: "Optimize campaigns and creative targeting.", icon: "🎯" },
+      { id: 'a6', title: "Others", description: "Stay relevant in the evolving digital world.", icon: "👥" }
     ]
   },
   master: {
@@ -54,8 +128,8 @@ export const INITIAL_CONTENT: PageContent = {
       { id: 't1', name: "ChatGPT", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", isBlurred: false },
       { id: 't2', name: "Claude", logo: "https://www.anthropic.com/images/icons/apple-touch-icon.png", isBlurred: false },
       { id: 't3', name: "Grok", logo: "https://x.ai/favicon.ico", isBlurred: false },
-      { id: 't4', name: "Co-Pilot", logo: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Microsoft_Copilot_Icon.svg", isBlurred: false },
-      { id: 't5', name: "Google AI Studio", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002.svg", isBlurred: false },
+      { id: 't4', name: "Co-Pilot", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Microsoft_Copilot_Icon.svg/1280px-Microsoft_Copilot_Icon.svg.png", isBlurred: false },
+      { id: 't5', name: "AI Studio", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Google_ai_studio_logo.png", isBlurred: false },
       { id: 't6', name: "Suno AI", logo: "https://suno.com/favicon.ico", isBlurred: false },
       { id: 't7', name: "Midjourney", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.svg", isBlurred: true },
       { id: 't8', name: "Runway", logo: "https://runwayml.com/favicon.ico", isBlurred: true },
@@ -67,8 +141,8 @@ export const INITIAL_CONTENT: PageContent = {
   },
   faqs: FAQS,
   certificate: {
-    title: "Professional Certification",
-    subtitle: "Get recognized for your skills with our globally valid certificate.",
+    title: "Get Certified AI Expert",
+    subtitle: "Yes! You will be certified by AI Tools Expert Trainers which brings a lot of credibility to your certificate & resume.",
     studentName: "Your Name Here",
     courseName: "Mastering Generative AI for Professionals",
     founderName: "Mohammad Asif",

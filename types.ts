@@ -33,6 +33,7 @@ export enum SectionId {
   PROMO = 'promo-video',
   IMAGE_GRID = 'showcase-grid',
   GAIN = 'gain',
+  AUDIENCE = 'audience',
   MASTER = 'master',
   CERTIFICATE = 'certificate',
   STUDENT = 'student-offer',
@@ -57,6 +58,11 @@ export interface PageContent {
   };
   imageGrid: string[];
   gain: {
+    title: string;
+    subtitle: string;
+    items: Benefit[];
+  };
+  audience: {
     title: string;
     subtitle: string;
     items: Benefit[];

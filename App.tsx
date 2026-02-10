@@ -10,14 +10,14 @@ import StickyElements from './components/StickyElements';
 import Footer from './components/Footer';
 import Certificate from './components/Certificate';
 import EditableText from './components/EditableText';
-import PromoVideo from './components/PromoVideo';
 import EditableImage from './components/EditableImage';
+import PromoVideo from './components/PromoVideo';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>(SectionId.HERO);
   const [isEditMode, setIsEditMode] = useState(false);
   const [content, setContent] = useState<PageContent>(INITIAL_CONTENT);
-  const [draggedItem, setDraggedItem] = useState<{ section: 'gain' | 'master', id: string } | null>(null);
+  const [draggedItem, setDraggedItem] = useState<{ section: 'gain' | 'master' | 'audience', id: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +59,16 @@ const App: React.FC = () => {
     }));
   };
 
+  const updateAudience = (id: string, field: string, value: string) => {
+    setContent(prev => ({
+      ...prev,
+      audience: {
+        ...prev.audience,
+        items: prev.audience.items.map(item => item.id === id ? { ...item, [field]: value } : item)
+      }
+    }));
+  };
+
   const updateImageGridItem = (index: number, newSrc: string) => {
     setContent(prev => {
       const newGrid = [...prev.imageGrid];
@@ -67,7 +77,7 @@ const App: React.FC = () => {
     });
   };
 
-  const handleDragStart = (section: 'gain' | 'master', id: string) => {
+  const handleDragStart = (section: 'gain' | 'master' | 'audience', id: string) => {
     if (!isEditMode) return;
     setDraggedItem({ section, id });
   };
@@ -77,7 +87,7 @@ const App: React.FC = () => {
     e.preventDefault();
   };
 
-  const handleDrop = (section: 'gain' | 'master', targetId: string) => {
+  const handleDrop = (section: 'gain' | 'master' | 'audience', targetId: string) => {
     if (!isEditMode || !draggedItem || draggedItem.section !== section) return;
     
     setContent(prev => {
@@ -129,13 +139,20 @@ const App: React.FC = () => {
           <Hero content={content.hero} onUpdate={updateHero} isEditMode={isEditMode} />
         </section>
 
-        {/* PROMO VIDEO */}
-        <section id={SectionId.PROMO} className="relative z-10 -mt-20">
-          <PromoVideo 
-            videoUrl={content.hero.promoVideoUrl} 
-            onUpdateVideo={(url) => updateHero('promoVideoUrl', url)} 
-            isEditMode={isEditMode} 
-          />
+        {/* PROMO VIDEO SECTION - Restored as per image */}
+        <section id={SectionId.PROMO} className="py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
+                Watch How <span className="text-[#65a34e]">AmazingAI</span> is Transforming Learning
+              </h2>
+            </div>
+            <PromoVideo 
+              videoUrl={content.hero.promoVideoUrl} 
+              onUpdateVideo={(url) => updateHero('promoVideoUrl', url)} 
+              isEditMode={isEditMode} 
+            />
+          </div>
         </section>
 
         {/* 3 IMAGE GRID */}
@@ -250,7 +267,7 @@ const App: React.FC = () => {
             <div className="w-24 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mt-8 shadow-sm"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {content.gain.items.map((benefit) => (
               <div 
                 key={benefit.id}
@@ -266,6 +283,64 @@ const App: React.FC = () => {
                 />
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* AUDIENCE SECTION (WHO IS THIS FOR) */}
+        <section id={SectionId.AUDIENCE} className="py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16 flex flex-col items-center">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                <EditableText 
+                  value={content.audience.title} 
+                  onChange={(val) => setContent(prev => ({...prev, audience: {...prev.audience, title: val}}))} 
+                  isEditMode={isEditMode} 
+                  tag="h2"
+                />
+              </h2>
+              <p className="text-xl text-slate-500 max-w-2xl font-medium">
+                <EditableText 
+                  value={content.audience.subtitle} 
+                  onChange={(val) => setContent(prev => ({...prev, audience: {...prev.audience, subtitle: val}}))} 
+                  isEditMode={isEditMode} 
+                  tag="p"
+                />
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {content.audience.items.map((item) => (
+                <div 
+                  key={item.id}
+                  className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all text-center flex flex-col items-center group"
+                >
+                  <div 
+                    onClick={() => {
+                      if (!isEditMode) return;
+                      const newIcon = prompt('Enter new emoji icon:', item.icon);
+                      if (newIcon) updateAudience(item.id, 'icon', newIcon);
+                    }}
+                    className={`w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 ${isEditMode ? 'cursor-pointer ring-2 ring-blue-400' : ''}`}
+                  >
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900 mb-2">
+                    <EditableText 
+                      value={item.title} 
+                      onChange={(val) => updateAudience(item.id, 'title', val)} 
+                      isEditMode={isEditMode} 
+                    />
+                  </h3>
+                  <p className="text-slate-500 text-sm font-medium">
+                    <EditableText 
+                      value={item.description} 
+                      onChange={(val) => updateAudience(item.id, 'description', val)} 
+                      isEditMode={isEditMode} 
+                    />
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
