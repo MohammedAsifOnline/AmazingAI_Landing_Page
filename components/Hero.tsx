@@ -11,7 +11,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ content, onUpdate, isEditMode }) => {
   return (
-    <div className="relative pt-24 pb-20 px-6 lg:pt-32 lg:pb-40 overflow-hidden bg-white">
+    <div className="relative pt-24 pb-12 px-6 lg:pt-32 lg:pb-20 overflow-hidden bg-white">
       <NeuralBackground />
 
       <div className="max-w-7xl mx-auto relative z-10">

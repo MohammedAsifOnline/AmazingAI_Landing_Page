@@ -64,13 +64,13 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
           </span>
         </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex items-center gap-6">
+        {/* Desktop Menu - Increased font size to text-base/text-lg and bolder weight */}
+        <ul className="hidden lg:flex items-center gap-8">
           {menuItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => scrollTo(item.id)}
-                className={`text-sm font-semibold transition-colors hover:text-blue-600 ${
+                className={`text-base font-bold transition-all hover:text-blue-600 hover:scale-105 active:scale-95 ${
                   activeSection === item.id ? 'text-blue-600' : 'text-slate-600'
                 }`}
               >
@@ -81,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
         </ul>
 
         <div className="flex items-center gap-4">
-          <button className="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-md hover:bg-blue-700 transition-colors">
+          <button className="hidden md:block bg-blue-600 text-white px-8 py-2.5 rounded-full text-base font-bold shadow-md hover:bg-blue-700 hover:scale-105 transition-all">
             Register
           </button>
           
@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
               <li key={item.id}>
                 <button
                   onClick={() => scrollTo(item.id)}
-                  className={`w-full text-left py-2 text-lg font-bold transition-colors ${
+                  className={`w-full text-left py-2 text-xl font-bold transition-colors ${
                     activeSection === item.id ? 'text-blue-600' : 'text-slate-700'
                   }`}
                 >

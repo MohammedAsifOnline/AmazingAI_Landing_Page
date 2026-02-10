@@ -12,8 +12,8 @@ const NeuralBackground: React.FC = () => {
 
     let animationFrameId: number;
     let particles: Particle[] = [];
-    const particleCount = 60;
-    const connectionDistance = 150;
+    const particleCount = 100; // Total density
+    const connectionDistance = 180; // Distance for drawing lines
 
     class Particle {
       x: number;
@@ -25,9 +25,9 @@ const NeuralBackground: React.FC = () => {
       constructor() {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2 + 1;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 2.5 + 1;
       }
 
       update() {
@@ -42,7 +42,7 @@ const NeuralBackground: React.FC = () => {
         if (!ctx) return;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.5)';
+        ctx.fillStyle = 'rgba(59, 130, 246, 0.7)'; // Main dot color
         ctx.fill();
       }
     }
@@ -70,8 +70,9 @@ const NeuralBackground: React.FC = () => {
 
           if (distance < connectionDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(124, 58, 237, ${1 - distance / connectionDistance})`;
-            ctx.lineWidth = 0.5;
+            const alpha = (1 - distance / connectionDistance) * 0.6;
+            ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`;
+            ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -95,7 +96,8 @@ const NeuralBackground: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />;
+  // Using responsive opacity: lower on mobile (opacity-20), medium on tablet (md:opacity-30), high on desktop (lg:opacity-60)
+  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-20 md:opacity-30 lg:opacity-60 transition-opacity duration-1000" />;
 };
 
 export default NeuralBackground;
