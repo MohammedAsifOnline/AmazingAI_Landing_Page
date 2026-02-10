@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { SectionId, PageContent, Benefit, Tool } from './types';
+import { SectionId, PageContent } from './types';
 import { INITIAL_CONTENT } from './constants';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -15,12 +15,9 @@ import PromoVideo from './components/PromoVideo';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>(SectionId.HERO);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [content, setContent] = useState<PageContent>(INITIAL_CONTENT);
-  const [draggedItem, setDraggedItem] = useState<{ section: 'gain' | 'master' | 'audience', id: string } | null>(null);
 
   useEffect(() => {
-    // Scroll handling for active navigation link
     const handleScroll = () => {
       const sections = Object.values(SectionId);
       const scrollPos = window.scrollY + 200;
@@ -34,7 +31,6 @@ const App: React.FC = () => {
       }
     };
 
-    // Intersection Observer for scroll-reveal animations
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -51,76 +47,7 @@ const App: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       elementsToReveal.forEach(el => revealObserver.unobserve(el));
     };
-  }, [content]); // Re-observe when content changes to catch new items
-
-  const updateHero = (key: string, value: string) => {
-    setContent(prev => ({ ...prev, hero: { ...prev.hero, [key]: value } }));
-  };
-
-  const updateBrand = (key: string, value: string) => {
-    setContent(prev => ({ ...prev, brand: { ...prev.brand, [key]: value } }));
-  };
-
-  const updateCertificate = (key: string, value: string) => {
-    setContent(prev => ({ ...prev, certificate: { ...prev.certificate, [key]: value } }));
-  };
-
-  const updateBenefit = (id: string, field: string, value: string) => {
-    setContent(prev => ({
-      ...prev,
-      gain: {
-        ...prev.gain,
-        items: prev.gain.items.map(item => item.id === id ? { ...item, [field]: value } : item)
-      }
-    }));
-  };
-
-  const updateAudience = (id: string, field: string, value: string) => {
-    setContent(prev => ({
-      ...prev,
-      audience: {
-        ...prev.audience,
-        items: prev.audience.items.map(item => item.id === id ? { ...item, [field]: value } : item)
-      }
-    }));
-  };
-
-  const updateImageGridItem = (index: number, newSrc: string) => {
-    setContent(prev => {
-      const newGrid = [...prev.imageGrid];
-      newGrid[index] = newSrc;
-      return { ...prev, imageGrid: newGrid };
-    });
-  };
-
-  const handleDragStart = (section: 'gain' | 'master' | 'audience', id: string) => {
-    if (!isEditMode) return;
-    setDraggedItem({ section, id });
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    if (!isEditMode) return;
-    e.preventDefault();
-  };
-
-  const handleDrop = (section: 'gain' | 'master' | 'audience', targetId: string) => {
-    if (!isEditMode || !draggedItem || draggedItem.section !== section) return;
-    
-    setContent(prev => {
-      const items = [...prev[section].items];
-      const fromIndex = items.findIndex(item => item.id === draggedItem.id);
-      const toIndex = items.findIndex(item => item.id === targetId);
-      
-      const [removed] = items.splice(fromIndex, 1);
-      items.splice(toIndex, 0, removed);
-      
-      return {
-        ...prev,
-        [section]: { ...prev[section], items }
-      };
-    });
-    setDraggedItem(null);
-  };
+  }, [content]);
 
   return (
     <div className="min-h-screen bg-slate-50 relative selection:bg-blue-100">
@@ -128,31 +55,12 @@ const App: React.FC = () => {
         activeSection={activeSection} 
         logoUrl={content.brand.logoUrl} 
         brandName={content.brand.title}
-        onUpdateBrand={updateBrand}
-        isEditMode={isEditMode}
       />
       
-      <div className="fixed top-24 right-6 z-[200]">
-        <button 
-          onClick={() => setIsEditMode(!isEditMode)}
-          className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-black shadow-2xl transition-all border transform hover:scale-105 ${
-            isEditMode 
-              ? 'bg-blue-600 text-white border-blue-700 ring-4 ring-blue-500/20' 
-              : 'bg-white text-slate-900 border-slate-200'
-          }`}
-        >
-          {isEditMode ? (
-            <><span className="animate-pulse">●</span> Publish Changes</>
-          ) : (
-            <>✏️ Customize Page</>
-          )}
-        </button>
-      </div>
-
       <main className="overflow-x-hidden">
         {/* HERO */}
         <section id={SectionId.HERO} className="reveal active">
-          <Hero content={content.hero} onUpdate={updateHero} isEditMode={isEditMode} />
+          <Hero content={content.hero} />
         </section>
 
         {/* PROMO VIDEO SECTION */}
@@ -165,8 +73,6 @@ const App: React.FC = () => {
             </div>
             <PromoVideo 
               videoUrl={content.hero.promoVideoUrl} 
-              onUpdateVideo={(url) => updateHero('promoVideoUrl', url)} 
-              isEditMode={isEditMode} 
               logoUrl={content.brand.logoUrl}
             />
           </div>
@@ -183,8 +89,6 @@ const App: React.FC = () => {
               >
                 <EditableImage 
                   src={src} 
-                  onChange={(val) => updateImageGridItem(index, val)} 
-                  isEditMode={isEditMode} 
                   alt={`Showcase ${index + 1}`} 
                   className="w-full h-full object-cover"
                 />
@@ -198,17 +102,9 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-extrabold text-slate-900 flex flex-wrap items-center justify-center gap-3">
-                <EditableText 
-                  value={content.master.title} 
-                  onChange={(val) => setContent(prev => ({...prev, master: {...prev.master, title: val}}))} 
-                  isEditMode={isEditMode} 
-                />
+                <EditableText value={content.master.title} />
                 <span className="text-green-500">
-                  <EditableText 
-                    value={content.master.subtitle} 
-                    onChange={(val) => setContent(prev => ({...prev, master: {...prev.master, subtitle: val}}))} 
-                    isEditMode={isEditMode} 
-                  />
+                  <EditableText value={content.master.subtitle} />
                 </span>
               </h2>
             </div>
@@ -219,27 +115,8 @@ const App: React.FC = () => {
                   key={tool.id} 
                   className={`reveal flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm transition-all duration-700 min-w-[150px] md:min-w-[180px] ${tool.isBlurred ? 'blur-[6px] opacity-20 hover:blur-none hover:opacity-100' : 'hover:shadow-md hover:-translate-y-1'}`}
                   style={{ transitionDelay: `${index * 50}ms` }}
-                  draggable={isEditMode}
-                  onDragStart={() => handleDragStart('master', tool.id)}
-                  onDragOver={handleDragOver}
-                  onDrop={() => handleDrop('master', tool.id)}
                 >
-                  <div 
-                    onClick={() => {
-                      if (!isEditMode) return;
-                      const newLogo = prompt('Enter Tool Logo URL:', tool.logo);
-                      if (newLogo) {
-                        setContent(prev => ({
-                          ...prev,
-                          master: {
-                            ...prev.master,
-                            items: prev.master.items.map(t => t.id === tool.id ? {...t, logo: newLogo} : t)
-                          }
-                        }));
-                      }
-                    }}
-                    className={`w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center ${isEditMode ? 'cursor-pointer ring-2 ring-blue-500 rounded-lg p-1' : ''}`}
-                  >
+                  <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">
                     <img 
                       src={tool.logo || 'https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png/40'} 
                       alt={tool.name} 
@@ -247,19 +124,7 @@ const App: React.FC = () => {
                     />
                   </div>
                   <span className="font-bold text-slate-900 text-base md:text-lg">
-                    <EditableText 
-                      value={tool.name} 
-                      onChange={(val) => {
-                        setContent(prev => ({
-                          ...prev,
-                          master: {
-                            ...prev.master,
-                            items: prev.master.items.map(t => t.id === tool.id ? {...t, name: val} : t)
-                          }
-                        }));
-                      }} 
-                      isEditMode={isEditMode} 
-                    />
+                    <EditableText value={tool.name} />
                   </span>
                 </div>
               ))}
@@ -271,20 +136,10 @@ const App: React.FC = () => {
         <section id={SectionId.GAIN} className="max-w-7xl mx-auto px-6 py-20 md:py-32 bg-slate-50 md:rounded-[4rem] shadow-inner md:my-12 reveal">
           <div className="text-center mb-16 flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-              <EditableText 
-                value={content.gain.title} 
-                onChange={(val) => setContent(prev => ({...prev, gain: {...prev.gain, title: val}}))} 
-                isEditMode={isEditMode} 
-                tag="h2"
-              />
+              <EditableText value={content.gain.title} tag="h2" />
             </h2>
             <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
-              <EditableText 
-                value={content.gain.subtitle} 
-                onChange={(val) => setContent(prev => ({...prev, gain: {...prev.gain, subtitle: val}}))} 
-                isEditMode={isEditMode} 
-                tag="p"
-              />
+              <EditableText value={content.gain.subtitle} tag="p" />
             </p>
             <div className="w-24 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mt-8 shadow-sm"></div>
           </div>
@@ -295,16 +150,8 @@ const App: React.FC = () => {
                 key={benefit.id}
                 className="reveal"
                 style={{ transitionDelay: `${index * 100}ms` }}
-                draggable={isEditMode}
-                onDragStart={() => handleDragStart('gain', benefit.id)}
-                onDragOver={handleDragOver}
-                onDrop={() => handleDrop('gain', benefit.id)}
               >
-                <BenefitCard 
-                  benefit={benefit} 
-                  onUpdate={updateBenefit} 
-                  isEditMode={isEditMode} 
-                />
+                <BenefitCard benefit={benefit} />
               </div>
             ))}
           </div>
@@ -315,20 +162,10 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16 flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                <EditableText 
-                  value={content.audience.title} 
-                  onChange={(val) => setContent(prev => ({...prev, audience: {...prev.audience, title: val}}))} 
-                  isEditMode={isEditMode} 
-                  tag="h2"
-                />
+                <EditableText value={content.audience.title} tag="h2" />
               </h2>
               <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
-                <EditableText 
-                  value={content.audience.subtitle} 
-                  onChange={(val) => setContent(prev => ({...prev, audience: {...prev.audience, subtitle: val}}))} 
-                  isEditMode={isEditMode} 
-                  tag="p"
-                />
+                <EditableText value={content.audience.subtitle} tag="p" />
               </p>
             </div>
             
@@ -339,29 +176,14 @@ const App: React.FC = () => {
                   className="reveal bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all text-center flex flex-col items-center group"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div 
-                    onClick={() => {
-                      if (!isEditMode) return;
-                      const newIcon = prompt('Enter new emoji icon:', item.icon);
-                      if (newIcon) updateAudience(item.id, 'icon', newIcon);
-                    }}
-                    className={`w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 ${isEditMode ? 'cursor-pointer ring-2 ring-blue-400' : ''}`}
-                  >
+                  <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-black text-slate-900 mb-2">
-                    <EditableText 
-                      value={item.title} 
-                      onChange={(val) => updateAudience(item.id, 'title', val)} 
-                      isEditMode={isEditMode} 
-                    />
+                    <EditableText value={item.title} />
                   </h3>
                   <p className="text-slate-500 text-sm font-medium">
-                    <EditableText 
-                      value={item.description} 
-                      onChange={(val) => updateAudience(item.id, 'description', val)} 
-                      isEditMode={isEditMode} 
-                    />
+                    <EditableText value={item.description} />
                   </p>
                 </div>
               ))}
@@ -373,8 +195,6 @@ const App: React.FC = () => {
         <section id={SectionId.CERTIFICATE} className="py-20 md:py-32 overflow-hidden bg-white reveal">
           <Certificate 
             content={content.certificate} 
-            onUpdate={updateCertificate} 
-            isEditMode={isEditMode} 
             logoUrl={content.brand.logoUrl}
           />
         </section>

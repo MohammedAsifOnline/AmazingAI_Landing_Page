@@ -7,11 +7,9 @@ interface HeaderProps {
   activeSection: string;
   logoUrl?: string;
   brandName: string;
-  onUpdateBrand: (key: string, value: string) => void;
-  isEditMode: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUpdateBrand, isEditMode }) => {
+const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => {
@@ -25,12 +23,6 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
     }
   };
 
-  const handleLogoUpdate = () => {
-    if (!isEditMode) return;
-    const newLogo = prompt('Enter Logo Image URL:', logoUrl);
-    if (newLogo !== null) onUpdateBrand('logoUrl', newLogo);
-  };
-
   const menuItems = [
     { name: 'Home', id: SectionId.HERO },
     { name: 'Master', id: SectionId.MASTER },
@@ -40,7 +32,6 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
     { name: 'FAQ', id: SectionId.FAQ },
   ];
 
-  // Helper to render brand name with colored 'AI'
   const renderBrandName = (name: string) => {
     if (name === "AmazingAI") {
       return (
@@ -56,10 +47,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
     <header className="fixed top-0 left-0 w-full z-[100] px-4 py-4 md:px-6">
       <nav className="max-w-7xl mx-auto glass rounded-full px-6 py-3 flex items-center justify-between shadow-lg shadow-blue-500/10">
         <div className="flex items-center gap-2">
-          <div 
-            onClick={handleLogoUpdate}
-            className={`w-12 h-12 flex items-center justify-center overflow-hidden transition-all ${isEditMode ? 'cursor-pointer ring-2 ring-blue-500 rounded-xl' : ''}`}
-          >
+          <div className="w-12 h-12 flex items-center justify-center overflow-hidden transition-all">
             {logoUrl ? (
               <img src={logoUrl} alt="Logo" className="w-full h-full object-contain" />
             ) : (
@@ -69,20 +57,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName, onUp
             )}
           </div>
           <span className="text-xl font-extrabold tracking-tight text-slate-900 ml-1">
-            {isEditMode ? (
-              <EditableText 
-                value={brandName} 
-                onChange={(val) => onUpdateBrand('title', val)} 
-                isEditMode={isEditMode} 
-                tag="span"
-              />
-            ) : (
-              renderBrandName(brandName)
-            )}
+            {renderBrandName(brandName)}
           </span>
         </div>
 
-        {/* Desktop Menu */}
         <ul className="hidden lg:flex items-center gap-8">
           {menuItems.map((item) => (
             <li key={item.id}>

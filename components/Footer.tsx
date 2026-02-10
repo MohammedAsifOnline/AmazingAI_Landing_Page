@@ -14,6 +14,7 @@ const Footer: React.FC<FooterProps> = ({ logoUrl }) => {
             <div className="w-10 h-10 flex items-center justify-center">
               <img src={logoUrl || "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png"} alt="AmazingAI Logo" className="w-full h-full object-contain" />
             </div>
+            {/* Removed 'LMS' and styled 'AI' in Blue */}
             <span className="text-lg font-extrabold text-slate-900">Amazing<span className="text-blue-600">AI</span></span>
           </div>
           <p className="text-slate-500 text-sm leading-relaxed mb-6">

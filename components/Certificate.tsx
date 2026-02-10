@@ -4,12 +4,10 @@ import EditableText from './EditableText';
 
 interface CertificateProps {
   content: any;
-  onUpdate: (key: string, value: string) => void;
-  isEditMode: boolean;
   logoUrl?: string;
 }
 
-const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode, logoUrl }) => {
+const Certificate: React.FC<CertificateProps> = ({ content, logoUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -24,12 +22,6 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
     return () => { if (element) observer.unobserve(element); };
   }, []);
 
-  const handleSealUpdate = () => {
-    if (!isEditMode) return;
-    const newSeal = prompt('Enter Seal Image URL:', content.sealUrl);
-    if (newSeal !== null) onUpdate('sealUrl', newSeal);
-  };
-
   const checklistItems = [
     "Validates your expertise in 25+ AI Tools",
     "Demonstrates practical prompt engineering skills",
@@ -42,37 +34,29 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
 
   return (
     <div id="certificate-section" className="relative bg-[#0f172a] overflow-hidden py-24 md:py-32 px-6">
-      {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute -top-1/4 -right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full"></div>
         <div className="absolute -bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-indigo-600/10 blur-[120px] rounded-full"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-4xl md:text-7xl font-black mb-8 text-white tracking-tight">
-            <EditableText value={content.title} onChange={(val) => onUpdate('title', val)} isEditMode={isEditMode} />
+            <EditableText value={content.title} />
           </h2>
           <p className="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
-            <EditableText value={content.subtitle} onChange={(val) => onUpdate('subtitle', val)} isEditMode={isEditMode} />
+            <EditableText value={content.subtitle} />
           </p>
         </div>
 
-        {/* Main Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Left Column: The Actual Certificate */}
           <div className="order-2 lg:order-1 perspective-1000">
              <div className="relative group transform transition-all duration-700 hover:rotate-y-2 hover:rotate-x-2">
-               {/* Certificate Paper */}
                <div className="relative aspect-[1.4/1] bg-white rounded-xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden border-[12px] border-slate-800 p-6 md:p-12 text-slate-900">
-                  {/* Subtle Pattern Background */}
                   <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:20px_20px]"></div>
                   <div className="absolute inset-4 border border-blue-100 pointer-events-none"></div>
 
                   <div className="relative h-full flex flex-col items-center justify-between text-center">
-                    {/* Header */}
                     <div className="flex flex-col items-center gap-2">
                       <div className="w-14 h-14 flex items-center justify-center overflow-hidden">
                         <img src={logoUrl || defaultLogo} alt="Logo" className="w-full h-full object-contain" />
@@ -80,23 +64,21 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
                       <div className="text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase">Official Certification</div>
                     </div>
 
-                    {/* Recipient */}
                     <div className="w-full">
                       <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Awarded To</div>
                       <div className="text-3xl md:text-5xl font-serif text-slate-900 italic mb-2">
-                        <EditableText value={content.studentName} onChange={(val) => onUpdate('studentName', val)} isEditMode={isEditMode} />
+                        <EditableText value={content.studentName} />
                       </div>
                       <div className="h-px w-1/2 bg-slate-100 mx-auto mb-2"></div>
                       <div className="text-slate-500 text-[10px] md:text-xs max-w-sm mx-auto leading-relaxed">
                         For successful completion and mastery of the course
                         <br />
                         <span className="text-blue-600 font-bold block mt-1 text-sm md:text-base">
-                          <EditableText value={content.courseName} onChange={(val) => onUpdate('courseName', val)} isEditMode={isEditMode} />
+                          <EditableText value={content.courseName} />
                         </span>
                       </div>
                     </div>
 
-                    {/* Signatures & Seal */}
                     <div className="w-full flex justify-between items-end px-2 md:px-8">
                       <div className="text-left">
                         <div className="w-20 md:w-24 h-px bg-slate-300 mb-1"></div>
@@ -105,10 +87,7 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
                       </div>
                       
                       <div className="flex flex-col items-center">
-                        <div 
-                          onClick={handleSealUpdate}
-                          className={`w-16 h-16 md:w-20 md:h-20 bg-blue-600/5 rounded-full flex items-center justify-center mb-1 border-2 border-dashed border-blue-400/30 transition-all ${isEditMode ? 'cursor-pointer hover:bg-blue-600/10 ring-2 ring-blue-500' : ''}`}
-                        >
+                        <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-600/5 rounded-full flex items-center justify-center mb-1 border-2 border-dashed border-blue-400/30 transition-all">
                           {content.sealUrl ? (
                             <img src={content.sealUrl} alt="Seal" className="w-14 h-14 md:w-16 md:h-16 object-contain rounded-full" />
                           ) : (
@@ -122,7 +101,7 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
 
                       <div className="text-right">
                         <div className="font-serif italic text-lg md:text-xl text-slate-900 mb-0">
-                          <EditableText value={content.founderName} onChange={(val) => onUpdate('founderName', val)} isEditMode={isEditMode} />
+                          <EditableText value={content.founderName} />
                         </div>
                         <div className="w-20 md:w-24 h-px bg-slate-300 mb-1 ml-auto"></div>
                         <div className="text-slate-900 font-bold uppercase text-[8px] tracking-widest">Founder, AmazingAI</div>
@@ -130,13 +109,10 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
                     </div>
                   </div>
                </div>
-               
-               {/* Decorative Background Offset */}
                <div className="absolute -inset-2 bg-gradient-to-br from-blue-600/20 to-transparent rounded-2xl -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
              </div>
           </div>
 
-          {/* Right Column: Benefits Checklist */}
           <div className="order-1 lg:order-2">
             <h3 className="text-[#65a34e] text-2xl md:text-3xl font-black mb-10 uppercase tracking-tight flex items-center gap-3">
               <span className="w-8 h-1 bg-[#65a34e] rounded-full"></span>
@@ -164,7 +140,6 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
               ))}
             </ul>
 
-            {/* Verification Badge */}
             <div className={`mt-12 bg-slate-800/40 border border-slate-700 p-6 md:p-8 rounded-[2rem] flex items-center gap-5 max-w-sm shadow-2xl backdrop-blur-md transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
               <div className="w-14 h-14 bg-yellow-500/10 rounded-2xl flex items-center justify-center text-yellow-500 text-2xl shadow-xl shadow-yellow-500/5 animate-pulse">
                 ★
