@@ -6,9 +6,10 @@ interface CertificateProps {
   content: any;
   onUpdate: (key: string, value: string) => void;
   isEditMode: boolean;
+  logoUrl?: string;
 }
 
-const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode }) => {
+const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode, logoUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -36,6 +37,8 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
     "Boosts your LinkedIn profile and resume visibility",
     "Proof of completion for ISO 9001 certified training"
   ];
+
+  const defaultLogo = "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png";
 
   return (
     <div id="certificate-section" className="relative bg-[#0f172a] overflow-hidden py-24 md:py-32 px-6">
@@ -71,7 +74,9 @@ const Certificate: React.FC<CertificateProps> = ({ content, onUpdate, isEditMode
                   <div className="relative h-full flex flex-col items-center justify-between text-center">
                     {/* Header */}
                     <div className="flex flex-col items-center gap-2">
-                      <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl shadow-lg">A</div>
+                      <div className="w-14 h-14 flex items-center justify-center overflow-hidden">
+                        <img src={logoUrl || defaultLogo} alt="Logo" className="w-full h-full object-contain" />
+                      </div>
                       <div className="text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase">Official Certification</div>
                     </div>
 

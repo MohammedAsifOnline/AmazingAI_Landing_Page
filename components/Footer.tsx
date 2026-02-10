@@ -1,14 +1,20 @@
 
 import React from 'react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  logoUrl?: string;
+}
+
+const Footer: React.FC<FooterProps> = ({ logoUrl }) => {
   return (
     <footer className="bg-white border-t border-slate-100 pt-20 pb-40 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
         <div>
           <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">A</div>
-            <span className="text-lg font-extrabold text-slate-900">AmazingAI<span className="text-blue-600">LMS</span></span>
+            <div className="w-10 h-10 flex items-center justify-center">
+              <img src={logoUrl || "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png"} alt="AmazingAI Logo" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-lg font-extrabold text-slate-900">Amazing<span className="text-blue-600">AI</span></span>
           </div>
           <p className="text-slate-500 text-sm leading-relaxed mb-6">
             Revolutionizing education through personalized AI learning paths. ISO 9001 certified for excellence in professional training.
@@ -59,7 +65,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 border-t border-slate-50 pt-8">
-        <p>© 2024 AmazingAI LMS. All rights reserved. ISO 9001:2015 Certified.</p>
+        <p>© 2024 AmazingAI. All rights reserved. ISO 9001:2015 Certified.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
           <a href="#" className="hover:text-slate-600">Privacy Policy</a>
           <a href="#" className="hover:text-slate-600">Terms of Service</a>

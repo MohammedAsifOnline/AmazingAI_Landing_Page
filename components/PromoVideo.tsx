@@ -5,9 +5,10 @@ interface PromoVideoProps {
   videoUrl: string;
   onUpdateVideo: (newUrl: string) => void;
   isEditMode: boolean;
+  logoUrl?: string;
 }
 
-const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEditMode }) => {
+const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEditMode, logoUrl }) => {
   const getVideoId = (url: string) => {
     if (!url || typeof url !== 'string') return null;
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|m\.youtube\.com\/watch\?v=)([^#\&\?]*).*/;
@@ -32,6 +33,8 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEdit
     if (isEditMode) return;
     window.open(appUrl, '_blank', 'noopener,noreferrer');
   };
+
+  const defaultLogo = "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png";
 
   return (
     <div className="relative group w-full max-w-5xl mx-auto">
@@ -63,7 +66,9 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, onUpdateVideo, isEdit
           {/* UI Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40">
             <div className="absolute top-6 left-8 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold shadow-lg">A</div>
+              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                <img src={logoUrl || defaultLogo} alt="Logo" className="w-full h-full object-contain" />
+              </div>
               <span className="text-white font-bold text-sm drop-shadow-md">Learn AI with Amazing AI</span>
             </div>
 

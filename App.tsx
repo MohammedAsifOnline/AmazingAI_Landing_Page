@@ -51,7 +51,7 @@ const App: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
       elementsToReveal.forEach(el => revealObserver.unobserve(el));
     };
-  }, []);
+  }, [content]); // Re-observe when content changes to catch new items
 
   const updateHero = (key: string, value: string) => {
     setContent(prev => ({ ...prev, hero: { ...prev.hero, [key]: value } }));
@@ -167,15 +167,20 @@ const App: React.FC = () => {
               videoUrl={content.hero.promoVideoUrl} 
               onUpdateVideo={(url) => updateHero('promoVideoUrl', url)} 
               isEditMode={isEditMode} 
+              logoUrl={content.brand.logoUrl}
             />
           </div>
         </section>
 
         {/* 3 IMAGE GRID */}
-        <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-20 reveal">
+        <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {content.imageGrid.map((src, index) => (
-              <div key={index} className="rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] transition-transform duration-500 min-h-[300px] md:h-[400px]">
+              <div 
+                key={index} 
+                className="reveal rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] transition-transform duration-500 min-h-[300px] md:h-[400px]"
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
                 <EditableImage 
                   src={src} 
                   onChange={(val) => updateImageGridItem(index, val)} 
@@ -209,10 +214,11 @@ const App: React.FC = () => {
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              {content.master.items.map((tool) => (
+              {content.master.items.map((tool, index) => (
                 <div 
                   key={tool.id} 
-                  className={`flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm transition-all duration-700 min-w-[150px] md:min-w-[180px] ${tool.isBlurred ? 'blur-[6px] opacity-20 hover:blur-none hover:opacity-100' : 'hover:shadow-md hover:-translate-y-1'}`}
+                  className={`reveal flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm transition-all duration-700 min-w-[150px] md:min-w-[180px] ${tool.isBlurred ? 'blur-[6px] opacity-20 hover:blur-none hover:opacity-100' : 'hover:shadow-md hover:-translate-y-1'}`}
+                  style={{ transitionDelay: `${index * 50}ms` }}
                   draggable={isEditMode}
                   onDragStart={() => handleDragStart('master', tool.id)}
                   onDragOver={handleDragOver}
@@ -235,7 +241,7 @@ const App: React.FC = () => {
                     className={`w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center ${isEditMode ? 'cursor-pointer ring-2 ring-blue-500 rounded-lg p-1' : ''}`}
                   >
                     <img 
-                      src={tool.logo || 'https://via.placeholder.com/40'} 
+                      src={tool.logo || 'https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png/40'} 
                       alt={tool.name} 
                       className="w-full h-full object-contain" 
                     />
@@ -284,9 +290,11 @@ const App: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {content.gain.items.map((benefit) => (
+            {content.gain.items.map((benefit, index) => (
               <div 
                 key={benefit.id}
+                className="reveal"
+                style={{ transitionDelay: `${index * 100}ms` }}
                 draggable={isEditMode}
                 onDragStart={() => handleDragStart('gain', benefit.id)}
                 onDragOver={handleDragOver}
@@ -325,10 +333,11 @@ const App: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-              {content.audience.items.map((item) => (
+              {content.audience.items.map((item, index) => (
                 <div 
                   key={item.id}
-                  className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all text-center flex flex-col items-center group"
+                  className="reveal bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all text-center flex flex-col items-center group"
+                  style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div 
                     onClick={() => {
@@ -362,7 +371,12 @@ const App: React.FC = () => {
 
         {/* CERTIFICATE */}
         <section id={SectionId.CERTIFICATE} className="py-20 md:py-32 overflow-hidden bg-white reveal">
-          <Certificate content={content.certificate} onUpdate={updateCertificate} isEditMode={isEditMode} />
+          <Certificate 
+            content={content.certificate} 
+            onUpdate={updateCertificate} 
+            isEditMode={isEditMode} 
+            logoUrl={content.brand.logoUrl}
+          />
         </section>
 
         {/* FAQ */}
@@ -389,7 +403,7 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <Footer />
+      <Footer logoUrl={content.brand.logoUrl} />
       <StickyElements />
     </div>
   );

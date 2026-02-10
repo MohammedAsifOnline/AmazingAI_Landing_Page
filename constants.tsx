@@ -77,7 +77,8 @@ export const NEWS_ARTICLES: NewsArticle[] = [
 
 export const INITIAL_CONTENT: PageContent = {
   brand: {
-    logoUrl: "", 
+    // New Blue Circuit Logo Asset
+    logoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png", 
     title: "AmazingAI"
   },
   hero: {

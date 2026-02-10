@@ -29,9 +29,9 @@ const StickyElements: React.FC = () => {
               <div className="text-center md:text-left">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Limited Time Offer</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-slate-400 line-through text-lg font-medium">$199</span>
-                  <span className="text-3xl font-black text-blue-600">$49</span>
-                  <span className="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Save 75%</span>
+                  <span className="text-slate-400 line-through text-lg font-medium">₹24,999</span>
+                  <span className="text-3xl font-black text-blue-600">₹1,999</span>
+                  <span className="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Save 92%</span>
                 </div>
               </div>
               <div className="hidden sm:block h-10 w-px bg-slate-100"></div>
