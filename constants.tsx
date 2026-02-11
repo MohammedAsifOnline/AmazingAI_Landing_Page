@@ -90,9 +90,9 @@ export const INITIAL_CONTENT: PageContent = {
     promoVideoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/Amazing-AI-Promotional-AI-Mastery-Course-by-Siyan.mp4"
   },
   imageGrid: [
-    "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1675271591211-126ad94e495d?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+    "https://www.etrades.in/wp-content/uploads/2026/02/news-paper-cutting-on-ai-1A.jpg?auto=format&fit=crop&q=80&w=800",
+    "https://www.etrades.in/wp-content/uploads/2026/02/newspaper-cutting-on-AI.jpg?aauto=format&fit=crop&q=80&w=800",
+    "https://www.etrades.in/wp-content/uploads/2026/02/news-paper-cutting-on-ai-4a.jpg?auto=format&fit=crop&q=80&w=800"
   ],
   gain: {
     title: "What You'll Gain",

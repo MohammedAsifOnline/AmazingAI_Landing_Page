@@ -31,7 +31,7 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, logoUrl }) => {
       
       {/* Main Container */}
       <div 
-        className="relative z-10 bg-slate-950 rounded-[2rem] md:rounded-[3rem] overflow-hidden border-[8px] md:border-[16px] border-white shadow-2xl aspect-video w-full transition-all duration-500 hover:scale-[1.01]"
+        className="relative z-10 bg-slate-950 rounded-[1.5rem] md:rounded-[3rem] overflow-hidden border-[4px] md:border-[16px] border-white shadow-2xl aspect-video w-full transition-all duration-500 hover:scale-[1.01]"
       >
         {isPlaying ? (
           <div className="w-full h-full bg-black">
@@ -78,38 +78,38 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, logoUrl }) => {
             
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/40">
               {/* Overlay Content */}
-              <div className="absolute top-6 left-8 flex items-center gap-3">
-                <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+              <div className="absolute top-4 left-4 md:top-6 md:left-8 flex items-center gap-2 md:gap-3">
+                <div className="w-6 h-6 md:w-10 md:h-10 flex items-center justify-center overflow-hidden">
                   <img src={logoUrl || defaultLogo} alt="Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="text-white font-bold text-sm drop-shadow-md">Learn AI with Amazing AI</span>
+                <span className="text-white font-bold text-[10px] md:text-sm drop-shadow-md">Learn AI with Amazing AI</span>
               </div>
 
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="text-white/10 text-6xl md:text-9xl font-black uppercase tracking-tighter select-none">Amazing AI</span>
+                <span className="text-white/10 text-4xl md:text-9xl font-black uppercase tracking-tighter select-none">Amazing AI</span>
               </div>
 
-              {/* Play Button */}
+              {/* Play Button - Resized for mobile */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-white/20 rounded-full animate-ping scale-150"></div>
-                  <div className="relative w-24 h-24 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl group-hover/thumb:scale-110 transition-transform duration-300">
-                    <svg className="w-10 h-10 text-blue-600 translate-x-1" fill="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute inset-0 bg-white/20 rounded-full animate-ping scale-125 md:scale-150"></div>
+                  <div className="relative w-16 h-16 md:w-24 md:h-24 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl group-hover/thumb:scale-110 transition-transform duration-300">
+                    <svg className="w-6 h-6 md:w-10 md:h-10 text-blue-600 translate-x-0.5 md:translate-x-1" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M7 4v16l13-8z" />
                     </svg>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>
-                  <span className="text-white/80 text-xs font-black tracking-widest uppercase">HD Available</span>
+              <div className="absolute bottom-4 left-4 md:bottom-6 md:left-8 right-4 md:right-8 flex items-center justify-between">
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-600 animate-pulse"></div>
+                  <span className="text-white/80 text-[8px] md:text-xs font-black tracking-widest uppercase">HD Available</span>
                 </div>
-                <div className="flex gap-3">
-                   <div className="w-8 h-1 bg-white/40 rounded-full"></div>
-                   <div className="w-8 h-1 bg-white/20 rounded-full"></div>
-                   <div className="w-8 h-1 bg-white/20 rounded-full"></div>
+                <div className="flex gap-1.5 md:gap-3">
+                   <div className="w-4 h-0.5 md:w-8 md:h-1 bg-white/40 rounded-full"></div>
+                   <div className="w-4 h-0.5 md:w-8 md:h-1 bg-white/20 rounded-full"></div>
+                   <div className="w-4 h-0.5 md:w-8 md:h-1 bg-white/20 rounded-full"></div>
                 </div>
               </div>
             </div>
@@ -118,9 +118,9 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, logoUrl }) => {
       </div>
 
       {/* Floating Badge */}
-      <div className="absolute -bottom-4 right-8 z-20 hidden md:flex items-center gap-3 bg-white px-5 py-2.5 rounded-xl shadow-xl border border-slate-100 transform group-hover:scale-105 transition-transform">
-        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-[10px]">✓</div>
-        <span className="text-[10px] font-black text-slate-900 uppercase tracking-[0.2em]">Verified Curriculum</span>
+      <div className="absolute -bottom-3 right-4 md:-bottom-4 md:right-8 z-20 hidden sm:flex items-center gap-2 md:gap-3 bg-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg md:rounded-xl shadow-xl border border-slate-100 transform group-hover:scale-105 transition-transform">
+        <div className="w-4 h-4 md:w-6 md:h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-[8px] md:text-[10px]">✓</div>
+        <span className="text-[8px] md:text-[10px] font-black text-slate-900 uppercase tracking-[0.1em] md:tracking-[0.2em]">Verified Curriculum</span>
       </div>
     </div>
   );

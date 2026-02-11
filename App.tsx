@@ -78,8 +78,17 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 3 IMAGE GRID */}
+        {/* 3 IMAGE GRID (News Glimpse Section) */}
         <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center mb-16 reveal">
+            <h2 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
+              News Glimps on <br className="md:hidden" />
+              <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+                Artificial Intelligence
+              </span>
+            </h2>
+            <div className="w-24 h-2 bg-blue-600/10 rounded-full mx-auto mt-6"></div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {content.imageGrid.map((src, index) => (
               <div 
@@ -89,7 +98,7 @@ const App: React.FC = () => {
               >
                 <EditableImage 
                   src={src} 
-                  alt={`Showcase ${index + 1}`} 
+                  alt={`News clipping ${index + 1}`} 
                   className="w-full h-full object-cover"
                 />
               </div>
