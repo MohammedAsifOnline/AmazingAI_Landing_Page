@@ -88,7 +88,7 @@ export const INITIAL_CONTENT: PageContent = {
     subtitle: "Learn practical AI tools with guided paths, professional certification, and real-world projects designed for your career.",
     primaryCTA: "Register Now — It's Free to Start",
     secondaryCTA: "Explore Curriculum",
-    promoVideoUrl: "https://www.youtube.com/watch?v=Iz4huvnC-0M"
+    promoVideoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/A_young_indian_1080p_202601291150.mp4"
   },
   imageGrid: [
     "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
