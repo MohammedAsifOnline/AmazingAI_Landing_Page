@@ -101,7 +101,7 @@ const App: React.FC = () => {
         <section id={SectionId.MASTER} className="py-24 bg-white reveal">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-extrabold text-slate-900 flex flex-wrap items-center justify-center gap-3">
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 flex flex-wrap items-center justify-center gap-4">
                 <EditableText value={content.master.title} />
                 <span className="text-green-500">
                   <EditableText value={content.master.subtitle} />
@@ -113,7 +113,7 @@ const App: React.FC = () => {
               {content.master.items.map((tool, index) => (
                 <div 
                   key={tool.id} 
-                  className={`reveal flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm transition-all duration-700 min-w-[150px] md:min-w-[180px] ${tool.isBlurred ? 'blur-[6px] opacity-20 hover:blur-none hover:opacity-100' : 'hover:shadow-md hover:-translate-y-1'}`}
+                  className={`reveal flex items-center gap-3 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm transition-all duration-700 min-w-[150px] md:min-w-[180px] ${tool.isBlurred ? 'blur-[8px] opacity-20 cursor-default' : 'hover:shadow-md hover:-translate-y-1'}`}
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center">

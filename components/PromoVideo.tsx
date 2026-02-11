@@ -67,11 +67,11 @@ const PromoVideo: React.FC<PromoVideoProps> = ({ videoUrl, logoUrl }) => {
           >
             <div className="absolute inset-0 bg-slate-900">
                <img 
-                src={videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200"} 
+                src={videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : "https://www.etrades.in/wp-content/uploads/2026/02/AmazingAI-Intro-by-Siyan.jpg?auto=format&fit=crop&q=80&w=1200"} 
                 alt="Video Preview" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover/thumb:scale-105 opacity-80"
                 onError={(e) => {
-                  e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200";
+                  e.currentTarget.src = "https://www.etrades.in/wp-content/uploads/2026/02/AmazingAI-Intro-by-Siyan.jpg?auto=format&fit=crop&q=80&w=1200";
                 }}
               />
             </div>

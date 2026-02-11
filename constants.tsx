@@ -70,14 +70,13 @@ export const NEWS_ARTICLES: NewsArticle[] = [
     title: "How Generative AI is Transforming the Modern Workplace",
     category: "AI Trends",
     date: "May 10, 2024",
-    imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "https://www.etrades.in/wp-content/uploads/2026/02/AmazingAI-Intro-by-Siyan.jpg?auto=format&fit=crop&q=80&w=800",
     readTime: "5 min read"
   }
 ];
 
 export const INITIAL_CONTENT: PageContent = {
   brand: {
-    // New Blue Circuit Logo Asset
     logoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/Amazing_AI_logo_small-1.png", 
     title: "AmazingAI"
   },
@@ -88,7 +87,7 @@ export const INITIAL_CONTENT: PageContent = {
     subtitle: "Learn practical AI tools with guided paths, professional certification, and real-world projects designed for your career.",
     primaryCTA: "Register Now — It's Free to Start",
     secondaryCTA: "Explore Curriculum",
-    promoVideoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/A_young_indian_1080p_202601291150.mp4"
+    promoVideoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/Amazing-AI-Promotional-AI-Mastery-Course-by-Siyan.mp4"
   },
   imageGrid: [
     "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
@@ -124,7 +123,7 @@ export const INITIAL_CONTENT: PageContent = {
   },
   master: {
     title: "Learn",
-    subtitle: "20+ AI Tools",
+    subtitle: "25+ Popular AI Tools",
     items: [
       { id: 't1', name: "ChatGPT", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", isBlurred: false },
       { id: 't2', name: "Claude", logo: "https://www.anthropic.com/images/icons/apple-touch-icon.png", isBlurred: false },
@@ -132,12 +131,15 @@ export const INITIAL_CONTENT: PageContent = {
       { id: 't4', name: "Co-Pilot", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Microsoft_Copilot_Icon.svg/1280px-Microsoft_Copilot_Icon.svg.png", isBlurred: false },
       { id: 't5', name: "AI Studio", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Google_ai_studio_logo.png", isBlurred: false },
       { id: 't6', name: "Suno AI", logo: "https://suno.com/favicon.ico", isBlurred: false },
+      { id: 't10', name: "ElevenLabs", logo: "https://elevenlabs.io/favicon.ico", isBlurred: false },
+      { id: 't13', name: "Whisk", logo: "https://www.etrades.in/wp-content/uploads/2026/02/icon.webp", isBlurred: false },
       { id: 't7', name: "Midjourney", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.svg", isBlurred: true },
       { id: 't8', name: "Runway", logo: "https://runwayml.com/favicon.ico", isBlurred: true },
       { id: 't9', name: "D-ID", logo: "https://www.d-id.com/wp-content/uploads/2021/04/cropped-favicon-192x192.png", isBlurred: true },
-      { id: 't10', name: "ElevenLabs", logo: "https://elevenlabs.io/favicon.ico", isBlurred: true },
       { id: 't11', name: "Perplexity", logo: "https://www.perplexity.ai/favicon.ico", isBlurred: true },
-      { id: 't12', name: "Jasper", logo: "https://www.jasper.ai/favicon.ico", isBlurred: true }
+      { id: 't12', name: "Jasper", logo: "https://www.jasper.ai/favicon.ico", isBlurred: true },
+      { id: 't14', name: "Gamma", logo: "https://gamma.app/favicon.ico", isBlurred: true },
+      { id: 't15', name: "Notion", logo: "https://www.notion.so/images/favicon.ico", isBlurred: true }
     ]
   },
   faqs: FAQS,
