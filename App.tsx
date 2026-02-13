@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { SectionId, PageContent } from './types';
 import { INITIAL_CONTENT } from './constants';
 import Header from './components/Header';
@@ -16,6 +16,23 @@ import PromoVideo from './components/PromoVideo';
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>(SectionId.HERO);
   const [content, setContent] = useState<PageContent>(INITIAL_CONTENT);
+  const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+
+  // Auto-slide logic for news carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentNewsIndex((prev) => (prev + 1) % content.imageGrid.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [content.imageGrid.length]);
+
+  const nextNews = useCallback(() => {
+    setCurrentNewsIndex((prev) => (prev + 1) % content.imageGrid.length);
+  }, [content.imageGrid.length]);
+
+  const prevNews = useCallback(() => {
+    setCurrentNewsIndex((prev) => (prev - 1 + content.imageGrid.length) % content.imageGrid.length);
+  }, [content.imageGrid.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,22 +95,24 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 3 IMAGE GRID (News Glimpse Section) */}
-        <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-20">
-          <div className="text-center mb-16 reveal">
-            <h2 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
+        {/* NEWS GLIMPSE SECTION */}
+        <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+          <div className="text-center mb-10 lg:mb-16 reveal">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
               News Glimps on <br className="md:hidden" />
               <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
                 Artificial Intelligence
               </span>
             </h2>
-            <div className="w-24 h-2 bg-blue-600/10 rounded-full mx-auto mt-6"></div>
+            <div className="w-16 lg:w-24 h-1 lg:h-2 bg-blue-600/10 rounded-full mx-auto mt-4 lg:mt-6"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Desktop View: Grid */}
+          <div className="hidden lg:grid grid-cols-3 gap-8">
             {content.imageGrid.map((src, index) => (
               <div 
                 key={index} 
-                className="reveal rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] transition-transform duration-500 min-h-[300px] md:h-[400px]"
+                className="reveal rounded-[2.5rem] overflow-hidden shadow-xl border-4 border-white hover:scale-[1.02] transition-transform duration-500 h-[400px]"
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <EditableImage 
@@ -103,6 +122,53 @@ const App: React.FC = () => {
                 />
               </div>
             ))}
+          </div>
+
+          {/* Mobile/Tablet View: Carousel (Height reduced by 50%) */}
+          <div className="lg:hidden relative group">
+            <div className="overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl border-[4px] border-white bg-white h-[150px] md:h-[200px]">
+              <div 
+                className="flex transition-transform duration-700 ease-out h-full"
+                style={{ transform: `translateX(-${currentNewsIndex * 100}%)` }}
+              >
+                {content.imageGrid.map((src, index) => (
+                  <div key={index} className="w-full flex-shrink-0 h-full">
+                    <EditableImage 
+                      src={src} 
+                      alt={`News clipping ${index + 1}`} 
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={(e) => { e.stopPropagation(); prevNews(); }}
+              className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/95 backdrop-blur rounded-full flex items-center justify-center shadow-lg text-slate-800 hover:bg-blue-600 hover:text-white transition-all z-10 border border-slate-100"
+              aria-label="Previous Slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button 
+              onClick={(e) => { e.stopPropagation(); nextNews(); }}
+              className="absolute right-[-12px] top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/95 backdrop-blur rounded-full flex items-center justify-center shadow-lg text-slate-800 hover:bg-blue-600 hover:text-white transition-all z-10 border border-slate-100"
+              aria-label="Next Slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+            {/* Pagination Indicators */}
+            <div className="flex justify-center gap-1.5 mt-4">
+              {content.imageGrid.map((_, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => setCurrentNewsIndex(i)}
+                  className={`h-1.5 transition-all rounded-full ${currentNewsIndex === i ? 'w-6 bg-blue-600' : 'w-1.5 bg-slate-300'}`}
+                ></button>
+              ))}
+            </div>
           </div>
         </section>
 
