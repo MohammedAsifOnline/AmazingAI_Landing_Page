@@ -32,6 +32,7 @@ export interface AffiliateContent {
   title: string;
   subtitle: string;
   videoUrl: string;
+  thumbnailUrl?: string;
 }
 
 export enum SectionId {

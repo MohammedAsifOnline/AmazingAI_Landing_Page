@@ -288,6 +288,7 @@ const App: React.FC = () => {
             <div className="max-w-5xl mx-auto">
               <PromoVideo 
                 videoUrl={content.affiliate.videoUrl} 
+                thumbnailUrl={content.affiliate.thumbnailUrl}
                 logoUrl={content.brand.logoUrl}
               />
             </div>
