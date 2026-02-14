@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { SectionId, PageContent } from './types';
 import { INITIAL_CONTENT } from './constants';
@@ -99,7 +98,7 @@ const App: React.FC = () => {
         <section id={SectionId.IMAGE_GRID} className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
           <div className="text-center mb-10 lg:mb-16 reveal">
             <h2 className="text-3xl md:text-5xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
-              News Glimps on <br className="md:hidden" />
+              News Glimpse on <br className="md:hidden" />
               <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
                 Artificial Intelligence
               </span>
@@ -107,7 +106,6 @@ const App: React.FC = () => {
             <div className="w-16 lg:w-24 h-1 lg:h-2 bg-blue-600/10 rounded-full mx-auto mt-4 lg:mt-6"></div>
           </div>
 
-          {/* Desktop View: Grid */}
           <div className="hidden lg:grid grid-cols-3 gap-8">
             {content.imageGrid.map((src, index) => (
               <div 
@@ -124,7 +122,6 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile/Tablet View: Carousel */}
           <div className="lg:hidden relative group">
             <div className="overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl border-[4px] border-white bg-white h-[150px] md:h-[200px]">
               <div 
@@ -265,7 +262,7 @@ const App: React.FC = () => {
         </section>
 
         {/* CERTIFICATE */}
-        <section id={SectionId.CERTIFICATE} className="py-20 md:py-32 overflow-hidden bg-white reveal">
+        <section id={SectionId.CERTIFICATE} className="pt-20 md:pt-32 pb-0 overflow-hidden bg-white reveal">
           <Certificate 
             content={content.certificate} 
             logoUrl={content.brand.logoUrl}
@@ -273,9 +270,9 @@ const App: React.FC = () => {
         </section>
 
         {/* AMAZING AI AFFILIATE PROGRAM SECTION */}
-        <section id={SectionId.AFFILIATE} className="py-20 md:py-32 bg-white reveal">
+        <section id={SectionId.AFFILIATE} className="pt-16 md:pt-24 pb-20 md:pb-32 bg-white reveal">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16 flex flex-col items-center">
+            <div className="text-center mb-12 flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
                 <EditableText value={content.affiliate.title} tag="h2" />
               </h2>
