@@ -28,6 +28,12 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface AffiliateContent {
+  title: string;
+  subtitle: string;
+  videoUrl: string;
+}
+
 export enum SectionId {
   HERO = 'home',
   PROMO = 'promo-video',
@@ -62,6 +68,7 @@ export interface PageContent {
     subtitle: string;
     items: Benefit[];
   };
+  affiliate: AffiliateContent;
   audience: {
     title: string;
     subtitle: string;

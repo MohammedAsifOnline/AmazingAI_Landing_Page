@@ -109,6 +109,11 @@ export const INITIAL_CONTENT: PageContent = {
       { id: '8', title: "And Lot more...", description: "Continuous updates with the latest tools added to your portal every month.", icon: "✨" }
     ]
   },
+  affiliate: {
+    title: "Amazing AI Affiliate Program",
+    subtitle: "Partner with us and earn while sharing the future of AI education. Join our global network of innovators.",
+    videoUrl: "https://www.etrades.in/wp-content/uploads/2026/02/Zoya-Amazing-AI-affliate-promo.mp4"
+  },
   audience: {
     title: "Who is this Workshop For?",
     subtitle: "Whether you're starting out or scaling up, AI is the lever you need.",

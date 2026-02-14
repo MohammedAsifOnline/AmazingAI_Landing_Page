@@ -124,7 +124,7 @@ const App: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile/Tablet View: Carousel (Height reduced by 50%) */}
+          {/* Mobile/Tablet View: Carousel */}
           <div className="lg:hidden relative group">
             <div className="overflow-hidden rounded-[1.5rem] md:rounded-[2.5rem] shadow-xl border-[4px] border-white bg-white h-[150px] md:h-[200px]">
               <div 
@@ -143,7 +143,6 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            {/* Navigation Arrows */}
             <button 
               onClick={(e) => { e.stopPropagation(); prevNews(); }}
               className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/95 backdrop-blur rounded-full flex items-center justify-center shadow-lg text-slate-800 hover:bg-blue-600 hover:text-white transition-all z-10 border border-slate-100"
@@ -159,7 +158,6 @@ const App: React.FC = () => {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
             </button>
 
-            {/* Pagination Indicators */}
             <div className="flex justify-center gap-1.5 mt-4">
               {content.imageGrid.map((_, i) => (
                 <button 
@@ -272,6 +270,28 @@ const App: React.FC = () => {
             content={content.certificate} 
             logoUrl={content.brand.logoUrl}
           />
+        </section>
+
+        {/* AMAZING AI AFFILIATE PROGRAM SECTION */}
+        <section id={SectionId.AFFILIATE} className="py-20 md:py-32 bg-white reveal">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16 flex flex-col items-center">
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                <EditableText value={content.affiliate.title} tag="h2" />
+              </h2>
+              <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
+                <EditableText value={content.affiliate.subtitle} tag="p" />
+              </p>
+              <div className="w-24 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mt-8 shadow-sm"></div>
+            </div>
+            
+            <div className="max-w-5xl mx-auto">
+              <PromoVideo 
+                videoUrl={content.affiliate.videoUrl} 
+                logoUrl={content.brand.logoUrl}
+              />
+            </div>
+          </div>
         </section>
 
         {/* FAQ */}
