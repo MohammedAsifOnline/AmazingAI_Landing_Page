@@ -206,10 +206,10 @@ const App: React.FC = () => {
         <section id={SectionId.GAIN} className="max-w-7xl mx-auto px-6 py-20 md:py-32 bg-slate-50 md:rounded-[4rem] shadow-inner md:my-12 reveal">
           <div className="text-center mb-16 flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-              <EditableText value={content.gain.title} tag="h2" />
+              <EditableText value={content.gain.title} tag="span" />
             </h2>
             <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
-              <EditableText value={content.gain.subtitle} tag="p" />
+              <EditableText value={content.gain.subtitle} tag="span" />
             </p>
             <div className="w-24 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mt-8 shadow-sm"></div>
           </div>
@@ -232,10 +232,10 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16 flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                <EditableText value={content.audience.title} tag="h2" />
+                <EditableText value={content.audience.title} tag="span" />
               </h2>
               <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
-                <EditableText value={content.audience.subtitle} tag="p" />
+                <EditableText value={content.audience.subtitle} tag="span" />
               </p>
             </div>
             
@@ -274,10 +274,10 @@ const App: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12 flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                <EditableText value={content.affiliate.title} tag="h2" />
+                <EditableText value={content.affiliate.title} tag="span" />
               </h2>
               <p className="text-lg md:text-xl text-slate-500 max-w-2xl font-medium">
-                <EditableText value={content.affiliate.subtitle} tag="p" />
+                <EditableText value={content.affiliate.subtitle} tag="span" />
               </p>
               <div className="w-24 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mt-8 shadow-sm"></div>
             </div>
@@ -305,7 +305,14 @@ const App: React.FC = () => {
                 <span className="inline-block px-4 py-2 bg-yellow-400 text-yellow-900 rounded-full text-xs font-black uppercase tracking-widest mb-6 md:mb-8">Exclusive Opportunity</span>
                 <h2 className="text-4xl md:text-7xl font-black mb-6 md:mb-8 leading-tight">Student Success Plan</h2>
                 <p className="text-lg md:text-xl text-blue-100 mb-8 md:mb-10 leading-relaxed font-medium opacity-90">Verify your status and get immediate access to our entire AI tools library at a fraction of the cost.</p>
-                <button className="w-full sm:w-auto px-12 py-5 bg-white text-blue-700 rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-2xl">Claim 50% Discount Now</button>
+                <a 
+                  href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full sm:w-auto px-12 py-5 bg-white text-blue-700 rounded-2xl font-black text-lg hover:scale-105 transition-transform shadow-2xl text-center"
+                >
+                  Claim 50% Discount Now
+                </a>
               </div>
               <div className="glass bg-white/10 p-10 md:p-12 rounded-[2rem] md:rounded-[3rem] border-white/20 text-center flex flex-col items-center">
                   <div className="text-6xl md:text-8xl font-black mb-2 md:mb-4">50%</div>
