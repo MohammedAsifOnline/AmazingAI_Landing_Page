@@ -77,9 +77,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName }) =>
         </ul>
 
         <div className="flex items-center gap-4">
-          <button className="hidden md:block bg-blue-600 text-white px-8 py-2.5 rounded-full text-base font-bold shadow-md hover:bg-blue-700 hover:scale-105 transition-all">
+          <a 
+            href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:block bg-blue-600 text-white px-8 py-2.5 rounded-full text-base font-bold shadow-md hover:bg-blue-700 hover:scale-105 transition-all text-center"
+          >
             Register
-          </button>
+          </a>
           
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -108,9 +113,14 @@ const Header: React.FC<HeaderProps> = ({ activeSection, logoUrl, brandName }) =>
               </li>
             ))}
             <li className="pt-4">
-              <button className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl">
+              <a 
+                href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl text-center"
+              >
                 Get Started Now
-              </button>
+              </a>
             </li>
           </ul>
         </div>

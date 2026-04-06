@@ -48,9 +48,14 @@ const StickyElements: React.FC = () => {
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
-              <button className="flex-grow md:flex-grow-0 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-1 transition-all">
+              <a 
+                href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-grow md:flex-grow-0 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-200 hover:shadow-xl hover:-translate-y-1 transition-all text-center"
+              >
                 Register Now
-              </button>
+              </a>
             </div>
           </div>
         </div>

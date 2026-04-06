@@ -31,13 +31,23 @@ const Hero: React.FC<HeroProps> = ({ content }) => {
           </p>
           
           <div className="reveal flex flex-col sm:flex-row items-center justify-center gap-6" style={{ transitionDelay: '300ms' }}>
-            <button className="group w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-lg shadow-2xl shadow-blue-500/30 hover:-translate-y-1 hover:scale-105 transition-all">
+            <a 
+              href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-full sm:w-auto px-12 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-lg shadow-2xl shadow-blue-500/30 hover:-translate-y-1 hover:scale-105 transition-all text-center"
+            >
               <EditableText value={content.primaryCTA} />
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
-            </button>
-            <button className="w-full sm:w-auto px-12 py-5 bg-white text-slate-900 rounded-2xl font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-all shadow-sm">
+            </a>
+            <a 
+              href="https://amazingai.in/skills/registration/?redirect_to=https://amazingai.in/skills/dashboard/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-12 py-5 bg-white text-slate-900 rounded-2xl font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-all shadow-sm text-center"
+            >
               <EditableText value={content.secondaryCTA} />
-            </button>
+            </a>
           </div>
         </div>
       </div>
